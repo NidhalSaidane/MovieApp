@@ -178,14 +178,14 @@ function NavigationBar() {
               <Typography textAlign="center">{setting}</Typography>
             </MenuItem>
          </Link> )
-              :setting=='Dashboard'?(
+              :setting=='My WatchList'?(
                 user.role&&user.role=="client" ?
                 <Link to='/dhbClient'>  <MenuItem key={setting} onClick={handleOpenUserMenu}>
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
            </Link>: user.role=="saler"?
            <Link to='/dhbSaler'>  <MenuItem key={setting} onClick={handleOpenUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
+                <Typography textAlign="center">Dashbord</Typography>
               </MenuItem>
            </Link>:
            <Link to='/'>  <MenuItem key={setting} onClick={handleOpenUserMenu}>

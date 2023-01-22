@@ -2,7 +2,10 @@ import React from 'react'
 
 const DachboardClient = () => {
   return (
-    <div>DachboardClient</div>
+    <div>
+      <h1>My WatchList </h1>
+      
+      </div>
   )
 }
 

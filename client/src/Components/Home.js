@@ -8,8 +8,10 @@ import ProductsCard from './product/ProductsCard';
 const Home = () => {
   const list = useSelector((state) => state.prod.products);
   // console.log(list)
-  const currentUser=useSelector(state=>state.auth.currentUser)
+  const currentUser=useSelector(state=>state.auth.currentUser);
+
   // console.log(currentUser&& currentUser.role)
+  const movieF = list.filter(el => el.price ===5);
   return (
     <div  style={{
       display: "flex",
@@ -33,7 +35,7 @@ const Home = () => {
           paddingTop:"50px"
         }}
       >
-        {list.map((el) => <ProductsCard prod={el} key={el._id} />)}
+        {movieF.map((el) => <ProductsCard prod={el} key={el._id} />)}
       </div>
     </div>
   );

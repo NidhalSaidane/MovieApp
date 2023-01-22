@@ -11,18 +11,27 @@ import { getProdDetails,deletproduct } from "../../js/actions/productActions";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+
+
+
+
 export default function ProductsCard({ prod }) {
   // console.log(prod)
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
   console.log(currentUser && currentUser.role);
+  const alertdel = ()=> {
+    alert ("Are you sure to delete");
+    dispatch(deletproduct(prod._id));
+  }
+  
   return (
     <Card sx={{ maxWidth: 345, marginTop: "20px" }}>
       
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="340"
+        alt="movie img"
+        height="440"
         image={prod.img}
       />
       <CardContent>
@@ -67,7 +76,8 @@ export default function ProductsCard({ prod }) {
             </Button></Link>
             <Button 
             size="small"
-            onClick={()=>dispatch(deletproduct(prod._id))}
+            onClick = {()=>alertdel()}
+             
             >
               <DeleteIcon />
             </Button>{" "}

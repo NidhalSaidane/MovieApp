@@ -2,24 +2,18 @@ import * as React from "react";
 
 import { Rating } from '@mui/material';
 import { useSelector } from "react-redux";
+import ProductsCard from "./ProductsCard";
 
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-//   transition: theme.transitions.create("transform", {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
+
 
 export default function ProdDetails() {
   const [expanded, setExpanded] = React.useState(false);
   const details = useSelector((state) => state.prod.details);
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
+  const currentUser=useSelector(state=>state.auth.currentUser);
+
+  const list = useSelector((state) => state.prod.products);
+  const movieF = list.filter(el => el.category === details.category);
+  
 
   return (
     <div style={{backgroundColor:"black"}}>
@@ -39,8 +33,35 @@ export default function ProdDetails() {
       </div>
       <div style={{marginTop:"30px",padding:"50px"}}>
         <iframe  SRC={details.qteS} width="1200px" height="600"   allowfullscreen></iframe>
+
         
       </div>
+      <div  style={{
+      display: "flex",
+      flexDirection:"column",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+    }} >
+      {currentUser  && currentUser.role=="client"?
+        
+         <h1 style={{color:"white"}}>Similar movies </h1>
+                 : <h1 style={{color:"white"}}>Similar movies </h1>
+
+      }
+      
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: "30px",
+          paddingLeft:"100px",
+          paddingTop:"50px",
+          marginBottom:"50px"
+        }}
+      >
+        {movieF.map((el) => <ProductsCard prod={el} key={el._id} />)}
+      </div>
+    </div>
     </div>
     
     
